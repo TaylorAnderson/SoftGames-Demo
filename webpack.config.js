@@ -16,7 +16,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'Development',
+      title: 'SoftGames Demo',
       inject: 'body',
       template: './src/index.ejs'
     }),

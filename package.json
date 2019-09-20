@@ -1,9 +1,9 @@
 {
-  "name": "card-game",
+  "name": "SoftGames-Demo",
   "version": "5.0.1",
   "license": "CC-BY-NC-4.0",
   "author": "Taylor Anderson",
-  "description": "A card game prototype",
+  "description": "SoftGames demo",
   "engines": {
     "node": "~8.11.0",
     "npm": "~5.8.0"
