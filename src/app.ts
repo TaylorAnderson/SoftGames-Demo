@@ -5,25 +5,24 @@ import TWEEN from "@tweenjs/tween.js"
 import { Demo2 } from 'demo2';
 import { Sprite } from 'pixi.js';
 class Game {
-
   private app: PIXI.Application;
   private demo1: Demo1;
   private demo2: Demo2
   private demo3: Demo3;
 
   private demos: Array<PIXI.Container> = [];
-
   private buttons: Array<Button> = [];
 
   private fpsText: PIXI.Text = new PIXI.Text("", { fill: 0xFFFFFF })
-
   private headerText: PIXI.Text = new PIXI.Text("SoftGames Demo", { fontSize: 48, fill: 0xffffff })
   constructor() {
 
     this.app = new PIXI.Application({
-      backgroundColor: 0x0f0912, width: window.innerWidth, height: window.innerHeight,
-
+      backgroundColor: 0x0f0912,
+      width: window.innerWidth,
+      height: window.innerHeight,
     });
+
     let element = document.getElementById("game");
     element.appendChild(this.app.view);
 

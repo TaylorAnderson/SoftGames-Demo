@@ -15,8 +15,14 @@ export class Demo2 extends PIXI.Container {
     "dog",
     "dollar"
   ]
+
   private counter: number = 0;
+
   private currentTextSpr: PIXI.Sprite;
+
+  private textReloadInterval = 2;
+  private testStringSegments = 3;
+
   constructor() {
     super();
     this.tool = new TextTool([
@@ -28,10 +34,10 @@ export class Demo2 extends PIXI.Container {
   onToolLoaded = () => {
     PIXI.ticker.shared.add(() => {
       this.counter += PIXI.ticker.shared.elapsedMS / 1000
-      if (this.counter > 2) {
+      if (this.counter > this.textReloadInterval) {
         this.counter = 0;
         let testString = "";
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < this.testStringSegments; i++) {
           if (Math.random() > 0.5) {
             let index = Math.round(Math.random() * (this.textSegments.length - 1));
             testString += this.textSegments[index] + " "
@@ -43,13 +49,14 @@ export class Demo2 extends PIXI.Container {
         }
 
         if (this.currentTextSpr != null) this.currentTextSpr.destroy();
+
         this.currentTextSpr = this.tool.build(testString, {
           fontSize: MathUtil.randomRange(10, 50),
           fill: 0xffffff,
         })
+
         this.addChild(this.currentTextSpr);
       }
-
     })
   }
 }

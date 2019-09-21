@@ -9,8 +9,6 @@ interface ImageConfig {
 export class TextTool {
   private loader: PIXI.loaders.Loader;
   private images: Map<string, string> = new Map<string, string>();
-  private text: string;
-
   /**
    * A tool for building text with inline images.  Make sure to wait for the images to load before building anything using the onLoad callback.
    * @param imageConfigs The images you want to use.
@@ -24,11 +22,15 @@ export class TextTool {
     }
     this.loader.load(onLoad)
   }
+  /**
+   * The syntax for inline images is {key}.  For example, "Here is a dog: {dog}"
+   * Make sure you use a key that you set up in the constructor.
+   */
   build = (str: string, style: PIXI.TextStyleOptions) => {
-    //to import an image, put the path inside of curly brackets.  ex: "This is an image: {assets/image.png} and this is more text"
     let arr: Array<PIXI.Sprite> = [];
     let currentString = "";
     let insidePath = false;
+
     for (let i = 0; i < str.length; i++) {
       let char = str.charAt(i);
       if (char == "{") {
@@ -51,12 +53,14 @@ export class TextTool {
     let resultSpr = new Sprite();
 
     let currentX = 0;
+
     arr.forEach(sprite => {
       sprite.x = currentX;
       sprite.y = -sprite.getBounds().height / 2;
       currentX += sprite.getBounds().width;
       resultSpr.addChild(sprite);
     });
+
     return resultSpr;
   }
 }
